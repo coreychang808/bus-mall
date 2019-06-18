@@ -6,7 +6,7 @@ var image3 = document.getElementById('image3');
 
 var productHistory = [];
 var displayedProducts = [];
-var totalClickCount = 5;
+var totalClickCount = 25;
 
 function ProductImage(filePath, caption){
   this.filePath = filePath;
@@ -17,9 +17,10 @@ function ProductImage(filePath, caption){
 }
 ProductImage.list = [];
 
+
 ProductImage.prototype.calculateClickPercent = function(){
   try{
-    return (this.clickCount / this.displayTimes);
+    return Math.round((this.clickCount / this.displayTimes) *100);
   }
   catch (exception){
     return (NaN);
@@ -60,12 +61,13 @@ function clickEventListener(){
   var clickedProduct = ProductImage.list[productIndex];
   clickedProduct.clickCount++;
   totalClickCount--;
-  console.log(this.id, this.id[5], productIndex, ProductImage.list[productIndex], totalClickCount);
+  // console.log(this.id, this.id[5], productIndex, ProductImage.list[productIndex], totalClickCount);
   if (totalClickCount === 0){
     image1.removeEventListener('click', clickEventListener);
     image2.removeEventListener('click', clickEventListener);
     image3.removeEventListener('click', clickEventListener);
     renderReport();
+
   }
   else{
     renderImages();
@@ -75,9 +77,9 @@ function clickEventListener(){
 function renderReport(){
   for(var i = 0;i<ProductImage.list.length;i++){
     var product = ProductImage.list[i];
-    console.log(`description: ${product.caption}, click count: ${product.clickCount}, display count: ${product.displayTimes}, click percent: ${product.calculateClickPercent()}`);
-
+    ProductImage.list[i].percent=product.calculateClickPercent();
   }
+  doTheChartThing();
 }
 
 
@@ -111,5 +113,67 @@ function setUp (){
 
 
 setUp();
+
+
+
+
+
+
+
+
+
+var ctx = document.getElementById('placemat').getContext('2d');
+
+
+function doTheChartThing() {
+  var labels = [];
+  var colors = [];
+  var voteData = [];
+
+
+  // allTheData.sort(function (a, b) {
+  //   return b.pct - a.pct;
+  // });
+
+  for (var j = 0; j < ProductImage.list.length; j++) {
+    labels.push(ProductImage.list[j].caption);
+    voteData.push(ProductImage.list[j].percent);
+    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    colors.push(randomColor);
+  }
+  console.log(voteData);
+
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Popularity based on % of clicks',
+          data: voteData,
+          backgroundColor: colors
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: true,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        ]
+      }
+    }
+  });
+
+
+}
+
+
+
 
 
