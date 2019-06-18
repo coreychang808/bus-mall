@@ -4,8 +4,12 @@ ul{
 
 img.images {
     display: inline-block;
-    width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 250px;
     margin: 30px;
-    border: 1px solid black
+    border: 1px solid rgb(0, 204, 255)
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.747);
 }
