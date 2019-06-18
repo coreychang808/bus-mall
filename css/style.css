@@ -1,0 +1,11 @@
+ul{
+    display: flex;
+}
+
+img.images {
+    display: inline-block;
+    width: 500px;
+    height: 500px;
+    margin: 30px;
+    border: 1px solid black
+}
