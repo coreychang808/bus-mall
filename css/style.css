@@ -1,15 +1,31 @@
 ul{
     display: flex;
+    /* border: 1px solid black; */
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+    width: 950px;
+    
 }
 
-img.images {
+.images {
     display: inline-block;
     width: 250px;
     height: 250px;
     margin: 30px;
-    border: 1px solid rgb(0, 204, 255)
+    border: 3px dotted rgb(0, 1, 2)
 }
 
 body {
-    background-color: rgba(0, 0, 0, 0.747);
+    background-color: rgba(0, 195, 255, 0.555);
+}
+
+canvas {
+    /* background-color: rgba(168, 167, 167, 0.836);
+    border: 3px dotted rgb(0, 0, 0); */
+    margin-top:100px;
+    margin-left: auto;
+    margin-right:auto;
+
+    
 }
