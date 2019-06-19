@@ -131,7 +131,7 @@ function doTheChartThing() {
   var voteData = [];
 
 
-  // allTheData.sort(function (a, b) {
+  // setUp.sort(function (a, b) {
   //   return b.pct - a.pct;
   // });
 
