@@ -6,7 +6,7 @@ var image3 = document.getElementById('image3');
 
 var productHistory = [];
 var displayedProducts = [];
-var totalClickCount = 25;
+var totalClickCount = 5;
 
 function ProductImage(filePath, caption){
   this.filePath = filePath;
@@ -14,6 +14,7 @@ function ProductImage(filePath, caption){
   this.displayTimes = 0;
   this.clickCount = 0;
   ProductImage.list.push(this);
+  console.log( this.clickCount, caption);
 }
 ProductImage.list = [];
 
@@ -61,7 +62,7 @@ function clickEventListener(){
   var clickedProduct = ProductImage.list[productIndex];
   clickedProduct.clickCount++;
   totalClickCount--;
-  // console.log(this.id, this.id[5], productIndex, ProductImage.list[productIndex], totalClickCount);
+
   if (totalClickCount === 0){
     image1.removeEventListener('click', clickEventListener);
     image2.removeEventListener('click', clickEventListener);
@@ -131,9 +132,6 @@ function doTheChartThing() {
   var voteData = [];
 
 
-  // setUp.sort(function (a, b) {
-  //   return b.pct - a.pct;
-  // });
 
   for (var j = 0; j < ProductImage.list.length; j++) {
     labels.push(ProductImage.list[j].caption);
@@ -142,6 +140,7 @@ function doTheChartThing() {
     colors.push(randomColor);
   }
   console.log(voteData);
+
 
   var myChart = new Chart(ctx, {
     type: 'bar',
