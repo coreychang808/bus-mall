@@ -6,7 +6,7 @@ var image3 = document.getElementById('image3');
 
 var productHistory = [];
 var displayedProducts = [];
-var totalClickCount = 5;
+var totalClickCount = 25;
 
 function ProductImage(filePath, caption){
   this.filePath = filePath;
@@ -67,6 +67,7 @@ function clickEventListener(){
     image1.removeEventListener('click', clickEventListener);
     image2.removeEventListener('click', clickEventListener);
     image3.removeEventListener('click', clickEventListener);
+    saveLS();
     renderReport();
 
   }
@@ -173,6 +174,9 @@ function doTheChartThing() {
 }
 
 
-
-
+function saveLS () {
+  var contents = ProductImage.list;
+  localStorage.setItem('data', JSON.stringify(contents));
+  localStorage.setItem('clicks', JSON.stringify(displayedProducts));
+}
 
