@@ -66,6 +66,7 @@ function clickEventListener(){
     image1.removeEventListener('click', clickEventListener);
     image2.removeEventListener('click', clickEventListener);
     image3.removeEventListener('click', clickEventListener);
+    saveLS();
     renderReport();
 
   }
@@ -131,10 +132,6 @@ function doTheChartThing() {
   var voteData = [];
 
 
-  // setUp.sort(function (a, b) {
-  //   return b.pct - a.pct;
-  // });
-
   for (var j = 0; j < ProductImage.list.length; j++) {
     labels.push(ProductImage.list[j].caption);
     voteData.push(ProductImage.list[j].percent);
@@ -171,6 +168,12 @@ function doTheChartThing() {
   });
 
 
+}
+
+function saveLS() {
+  var contents = ProductImage.list;
+  localStorage.setItem('data', JSON.stringify(contents));
+  // localStorage.setItem('clicks', JSON.stringify(clicksThisSession));
 }
 
 
