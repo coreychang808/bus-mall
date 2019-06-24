@@ -146,7 +146,7 @@ function doTheChartThing() {
       labels: labels,
       datasets: [
         {
-          label: 'Popularity based on % of clicks',
+          label: 'Popularity based on % of clicks (25)',
           data: voteData,
           backgroundColor: colors
         }
